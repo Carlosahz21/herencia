@@ -21,7 +21,7 @@ public class ServicioPersonaBDD implements ServicioPersona{
 
 	@Override
 	public boolean eliminar(Persona persona) {
-		System.out.println("Actualizando persona en la bdd");
+		System.out.println("Eliminando persona en la bdd");
 		System.out.println(persona);
 		return true;
 	}

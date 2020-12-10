@@ -13,7 +13,7 @@ public class ServicioPersonaArchivos implements ServicioPersona {
 
 	@Override
 	public boolean actualizar(Persona persona) {
-		System.out.println("Actualizando persona en un archivo");
+		System.out.println("Eliminando persona en un archivo");
 		System.out.println(persona);
 		return true;
 	}
