@@ -6,6 +6,8 @@ import java.io.IOException;
 import java.util.Properties;
 
 import com.clearminds.cmh.excepciones.InstanceException;
+import com.clearminds.cmh.impl.ServicioPersonaArchivos;
+import com.clearminds.cmh.impl.ServicioPersonaBDD;
 import com.clearminds.cmh.interfaces.ServicioPersona;
 
 public class PersonaManager {
@@ -23,9 +25,12 @@ public class PersonaManager {
 	public PersonaManager() throws InstanceException {
 
 		Class<?> clase;
+		
 		try {
-			clase = Class.forName(leerPropiedad("clase"));
-			serv = (ServicioPersona) clase.newInstance();
+			
+			clase = Class.forName(leerPropiedad("claseArchivos"));
+			serv =  (ServicioPersona) clase.newInstance();
+			
 		} catch (ClassNotFoundException e) {
 			throw new InstanceException("Error al iniciar la instancia PersonaManager");
 		} catch (InstantiationException e) {
@@ -33,6 +38,7 @@ public class PersonaManager {
 		} catch (IllegalAccessException e) {
 			throw new InstanceException("Error al iniciarl la instancia PersonaManager");
 		}
+			
 		
 	}
 	
@@ -43,7 +49,7 @@ public class PersonaManager {
 	public static String leerPropiedad(String propiedad) {
 		Properties p = new Properties();
 		try {
-			p.load(new FileReader("conexion.properties"));
+			p.load(new FileReader("config.properties"));
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
