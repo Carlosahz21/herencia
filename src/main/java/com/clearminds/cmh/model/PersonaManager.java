@@ -5,6 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.Properties;
 
+import com.clearminds.cmh.excepciones.InstanceException;
 import com.clearminds.cmh.interfaces.ServicioPersona;
 
 public class PersonaManager {
@@ -19,10 +20,19 @@ public class PersonaManager {
 		this.serv = serv;
 	}
 
-	public PersonaManager() throws InstantiationException, IllegalAccessException, ClassNotFoundException {
+	public PersonaManager() throws InstanceException {
 
-		Class<?> clase = Class.forName(leerPropiedad("clase"));
-		serv = (ServicioPersona) clase.newInstance();
+		Class<?> clase;
+		try {
+			clase = Class.forName(leerPropiedad("clase"));
+			serv = (ServicioPersona) clase.newInstance();
+		} catch (ClassNotFoundException e) {
+			throw new InstanceException("Error al iniciar la instancia PersonaManager");
+		} catch (InstantiationException e) {
+			throw new InstanceException("Error al iniciarl la instancia PersonaManager");
+		} catch (IllegalAccessException e) {
+			throw new InstanceException("Error al iniciarl la instancia PersonaManager");
+		}
 		
 	}
 	
