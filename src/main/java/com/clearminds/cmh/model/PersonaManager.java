@@ -6,8 +6,6 @@ import java.io.IOException;
 import java.util.Properties;
 
 import com.clearminds.cmh.excepciones.InstanceException;
-import com.clearminds.cmh.impl.ServicioPersonaArchivos;
-import com.clearminds.cmh.impl.ServicioPersonaBDD;
 import com.clearminds.cmh.interfaces.ServicioPersona;
 
 public class PersonaManager {
@@ -28,8 +26,8 @@ public class PersonaManager {
 		
 		try {
 			
-			clase = Class.forName(leerPropiedad("claseArchivos"));
-			serv =  (ServicioPersona) clase.newInstance();
+			clase = Class.forName(leerPropiedad("claseBDD"));
+			serv = (ServicioPersona) clase.newInstance();
 			
 		} catch (ClassNotFoundException e) {
 			throw new InstanceException("Error al iniciar la instancia PersonaManager");
@@ -38,7 +36,8 @@ public class PersonaManager {
 		} catch (IllegalAccessException e) {
 			throw new InstanceException("Error al iniciarl la instancia PersonaManager");
 		}
-			
+		
+		
 		
 	}
 	
